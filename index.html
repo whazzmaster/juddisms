@@ -10,7 +10,21 @@
 </head>
 <body>
   <div class="juddism">
-    <h1>We are all walking off a salad cliff... together</h1>
+    <h1 id="quote"></h1>
   </div>
+
+  <script type="text/javascript">
+    var request = new XMLHttpRequest();
+    request.open('GET', '/data/juddisms.json', true);
+    request.send();
+
+    request.onload = function() {
+      var data = JSON.parse(this.response);
+      var quotes = data["juddisms"];
+      var el = document.getElementById("quote");
+      var quoteIndex = Math.floor(Math.random()*quotes.length);
+      el.innerText = quotes[quoteIndex]["quote"];
+    }
+  </script>
 </body>
 </html>
